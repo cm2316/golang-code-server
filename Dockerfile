@@ -26,6 +26,15 @@ RUN sudo chown -R coder:coder /home/coder/.local
 RUN sudo curl -fsSL https://deb.nodesource.com/setup_15.x | sudo bash -
 RUN sudo apt-get install -y nodejs
 
+# Install go
+RUN sudo wget https://go.dev/dl/go1.18.linux-amd64.tar.gz
+RUN sudo tar -xvf go1.18.linux-amd64.tar.gz
+RUN sudo mv go /usr/local
+RUN sudo echo 'export GOROOT=/usr/local/go'>>/etc/profile
+RUN sudo echo 'export PATH=$PATH:$GOROOT/bin'>>/etc/profile
+RUN sudo echo 'export GOPATH=/worl'>>/etc/profile
+
+
 # Install a VS Code extension:
 # Note: we use a different marketplace than VS Code. See https://github.com/cdr/code-server/blob/main/docs/FAQ.md#differences-compared-to-vs-code
 # RUN code-server --install-extension esbenp.prettier-vscode
